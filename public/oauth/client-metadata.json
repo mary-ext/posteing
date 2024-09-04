@@ -1,0 +1,12 @@
+{
+	"client_id": "https://posteing.pages.dev/oauth/client-metadata.json",
+	"client_uri": "https://posteing.pages.dev",
+	"client_name": "posteing",
+	"application_type": "web",
+	"scope": "atproto transition:generic",
+	"grant_types": ["authorization_code", "refresh_token"],
+	"redirect_uris": ["https://posteing.pages.dev/oauth/callback"],
+	"response_types": ["code"],
+	"token_endpoint_auth_method": "none",
+	"dpop_bound_access_tokens": true
+}
