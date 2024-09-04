@@ -25,9 +25,6 @@ importers:
 
   .:
     dependencies:
-      '@atcute/base32':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@atcute/bluemoji':
         specifier: ^1.0.2
         version: 1.0.2(@atcute/bluesky@1.0.5(@atcute/client@2.0.0))(@atcute/client@2.0.0)
