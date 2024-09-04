@@ -8,7 +8,7 @@ const SignedOutPage = () => {
 		<>
 			<div class="flex grow flex-col items-center justify-center px-12">
 				<p class="text-2xl font-medium">posteing</p>
-				<p class="mt-1 text-sm">lets you send multiple bluesky posts at once</p>
+				<p class="mt-1 text-sm">lets you send bluesky threads/multiple posts at once</p>
 				<p class="mt-6 text-pretty text-sm text-contrast-muted">
 					aka. i'm willing to give support to my thread poster thing but i sure as hell don't want to maintain
 					yet another bluesky web client

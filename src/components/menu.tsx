@@ -17,6 +17,7 @@ interface MenuContainerProps {
 	anchor: HTMLElement;
 	placement?: Placement;
 	cover?: boolean;
+	fitDesktopWidth?: number;
 	children: JSX.Element;
 }
 
@@ -36,6 +37,8 @@ const MenuContainer = (props: MenuContainerProps) => {
 
 	return on(isDesktop, ($isDesktop) => {
 		if ($isDesktop) {
+			const fitDesktopWidth = props.fitDesktopWidth;
+
 			const [floating, setFloating] = createSignal<HTMLElement>();
 			const position = useFloating(() => props.anchor, floating, {
 				placement: props.placement ?? 'bottom-end',
@@ -85,7 +88,11 @@ const MenuContainer = (props: MenuContainerProps) => {
 					ref={ref}
 					role="menu"
 					onKeyDown={onKeyDown}
-					style={{ top: `${position.y ?? 0}px`, left: `${position.x ?? 0}px` }}
+					style={{
+						top: `${position.y ?? 0}px`,
+						left: `${position.x ?? 0}px`,
+						width: fitDesktopWidth !== undefined ? `${fitDesktopWidth}px` : undefined,
+					}}
 					class="absolute flex max-w-sm flex-col overflow-hidden overflow-y-auto rounded-md border border-outline bg-background"
 				>
 					{props.children}

@@ -8,6 +8,8 @@ import { useSession } from '~/lib/states/session';
 import Avatar, { getUserAvatarType } from './avatar';
 import IconButton from './icon-button';
 import MenuOutlinedIcon from './icons-central/menu-outline';
+import { openModal } from '~/globals/modals';
+import AccountSwitchMenu from './main/account-switch-menu';
 
 interface PageHeaderProps extends ParentProps {}
 
@@ -69,7 +71,14 @@ const PageAccountSwitcher = ({}: PageAccountSwitcherProps) => {
 
 				return <MenuOutlinedIcon />;
 			}}
-			onClick={() => {}}
+			onClick={(ev) => {
+				if (!currentAccount) {
+					return;
+				}
+
+				const target = ev.currentTarget;
+				openModal(() => <AccountSwitchMenu anchor={target} />);
+			}}
 		/>
 	);
 };

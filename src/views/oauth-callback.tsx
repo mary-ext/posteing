@@ -1,4 +1,4 @@
-import { createResource, Match, Switch } from 'solid-js';
+import { batch, createResource, Match, Switch } from 'solid-js';
 
 import { OAuthServerAgent } from '~/lib/bsky-oauth/agents/server-agent';
 import { sessions } from '~/lib/bsky-oauth/agents/session';
@@ -82,16 +82,16 @@ const OAuthCallbackPage = () => {
 			// Don't worry about it failing.
 		}
 
-		{
+		batch(() => {
 			// Update UI preferences
 			const ui = preferences.sessions;
 
-			ui.active = sub;
 			ui.accounts = [{ did: sub }, ...ui.accounts.filter((acc) => acc.did !== sub)];
+			ui.active = sub;
 
 			// Reload, we've routed the user back to `/` earlier.
 			location.reload();
-		}
+		});
 	});
 
 	return (

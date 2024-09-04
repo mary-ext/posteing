@@ -35,6 +35,10 @@ export const closeModal = (id: number): void => {
 	});
 };
 
+export const closeAllModals = (): void => {
+	_setModals([]);
+};
+
 export interface ModalContext {
 	id: number;
 	/** Whether this dialog is currently the top-most dialog presented */
