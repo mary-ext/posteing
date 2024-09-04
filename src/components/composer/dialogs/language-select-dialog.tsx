@@ -13,7 +13,7 @@ import EndOfListView from '../../end-of-list-view';
 import CheckOutlinedIcon from '../../icons-central/check-outline';
 import SearchInput from '../../search-input';
 
-export interface LanguageSelectDialogProps {
+interface LanguageSelectDialogProps {
 	languages: string[];
 	onChange: (next: string[]) => void;
 }

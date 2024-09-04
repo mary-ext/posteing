@@ -13,7 +13,7 @@ import ExternalEmbedContent from '~/components/embeds/external-embed';
 import type { PostExternalEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface ExternalEmbedProps extends BaseEmbedProps {
+interface ExternalEmbedProps extends BaseEmbedProps {
 	embed: PostExternalEmbed;
 }
 

@@ -4,7 +4,7 @@ import { createId } from '~/lib/hooks/id';
 
 import { useFieldset } from './fieldset';
 
-export interface TextInputProps {
+interface TextInputProps {
 	ref?: (node: HTMLInputElement) => void;
 	label?: string;
 	type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url';

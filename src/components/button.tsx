@@ -2,7 +2,7 @@ import type { JSX } from 'solid-js';
 
 import { useFieldset } from './fieldset';
 
-export interface ButtonProps {
+interface ButtonProps {
 	title?: string;
 	href?: string;
 	disabled?: boolean;

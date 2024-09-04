@@ -4,7 +4,7 @@ import { parseAtUri } from '~/api/utils/strings';
 
 import Avatar from '../avatar';
 
-export interface FeedEmbedProps {
+interface FeedEmbedProps {
 	/** Expected to be static */
 	feed: AppBskyFeedDefs.GeneratorView;
 	/** Expected to be static */

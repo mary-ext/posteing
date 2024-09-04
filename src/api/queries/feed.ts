@@ -6,7 +6,7 @@ import { useAgent } from '~/lib/states/agent';
 import { isDid, parseAtUri } from '../utils/strings';
 import { resolveHandle } from './handle';
 
-export interface ExtendedGeneratorView extends AppBskyFeedDefs.GeneratorView {
+interface ExtendedGeneratorView extends AppBskyFeedDefs.GeneratorView {
 	isOnline: boolean;
 	isValid: boolean;
 }

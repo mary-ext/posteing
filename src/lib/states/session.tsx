@@ -27,7 +27,7 @@ import { makeAbortable } from '../hooks/abortable';
 import { createReactiveLocalStorage, isExternalWriting } from '../hooks/local-storage';
 import { assert } from '../utils/invariant';
 
-export interface CurrentAccountState {
+interface CurrentAccountState {
 	readonly did: At.DID;
 	readonly data: AccountData;
 	readonly preferences: PerAccountPreferenceSchema;
@@ -37,7 +37,7 @@ export interface CurrentAccountState {
 	readonly _cleanup: () => void;
 }
 
-export interface SessionContext {
+interface SessionContext {
 	readonly currentAccount: CurrentAccountState | undefined;
 
 	getAccounts(): AccountData[];

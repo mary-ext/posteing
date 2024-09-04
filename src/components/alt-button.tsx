@@ -3,7 +3,7 @@ import type { JSX } from 'solid-js';
 import { useFieldset } from './fieldset';
 import CheckOutlinedIcon from './icons-central/check-outline';
 
-export interface AltButtonProps {
+interface AltButtonProps {
 	checked?: boolean;
 	title: string;
 	onClick?: JSX.EventHandler<HTMLButtonElement, MouseEvent>;

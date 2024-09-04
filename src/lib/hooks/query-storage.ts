@@ -2,7 +2,7 @@ import type { Query, QueryFunctionContext, QueryKey } from '@mary/solid-query';
 
 import { createEventListener } from '../hooks/event-listener';
 
-export interface QueryPersistOptions {
+interface QueryPersistOptions {
 	name: string;
 	key?: string;
 	maxAge?: number;

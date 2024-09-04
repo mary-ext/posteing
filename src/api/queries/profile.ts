@@ -4,7 +4,7 @@ import { createQuery, type QueryPersister } from '@mary/solid-query';
 import { useAgent } from '~/lib/states/agent';
 import { useSession } from '~/lib/states/session';
 
-export interface ProfileQueryOptions {
+interface ProfileQueryOptions {
 	persister?: QueryPersister;
 	staleTime?: number;
 	gcTime?: number;

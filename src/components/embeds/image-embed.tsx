@@ -4,7 +4,7 @@ import { openModal } from '~/globals/modals';
 
 import ImageViewerModalLazy from '../images/image-viewer-modal-lazy';
 
-export interface ImageEmbedProps {
+interface ImageEmbedProps {
 	/** Expected to be static */
 	embed: AppBskyEmbedImages.View;
 	/** Expected to be static */

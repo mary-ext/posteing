@@ -11,7 +11,7 @@ import ListEmbedContent from '~/components/embeds/list-embed';
 import type { PostListEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface ListEmbedProps extends BaseEmbedProps {
+interface ListEmbedProps extends BaseEmbedProps {
 	embed: PostListEmbed;
 }
 

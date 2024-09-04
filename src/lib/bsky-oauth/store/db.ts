@@ -8,7 +8,7 @@ import type { AuthorizationServerMetadata, ProtectedResourceMetadata } from '../
 import type { SimpleStore } from '../types/store';
 import type { TokenSet } from '../types/token';
 
-export interface OAuthDatabaseOptions {
+interface OAuthDatabaseOptions {
 	name: string;
 }
 

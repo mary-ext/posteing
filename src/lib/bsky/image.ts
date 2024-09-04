@@ -5,7 +5,7 @@ const MAX_SIZE = 1_000_000; // 1 MB
 const POST_MAX_HEIGHT = 2_000;
 const POST_MAX_WIDTH = 2_000;
 
-export interface CompressResult {
+interface CompressResult {
 	blob: Blob;
 	ratio: {
 		width: number;
@@ -49,48 +49,7 @@ export const compressPostImage = async (blob: Blob): Promise<CompressResult> => 
 	throw new Error(`Unable to compress image according to criteria`);
 };
 
-export const compressProfileImage = async (
-	blob: Blob,
-	maxW: number,
-	maxH: number,
-): Promise<CompressResult> => {
-	// Try removing EXIF on supported image formats
-	{
-		const exifRemoved = removeExif(new Uint8Array(await blob.arrayBuffer()));
-
-		if (exifRemoved !== null) {
-			blob = new Blob([exifRemoved], { type: blob.type });
-		}
-	}
-
-	const image = await getImageFromBlob(blob);
-	const type = blob.type;
-
-	// Profile avatars only accepts either JPEG or PNG
-	if ((type === 'image/jpeg' || type === 'image/png') && blob.size <= MAX_SIZE) {
-		return { blob: blob, ratio: { width: image.naturalWidth, height: image.naturalHeight } };
-	}
-
-	// We went over the maximum size or format is unsupported, resize and compress to fit.
-	const [canvas, width, height] = getResizedImage(image, maxW, maxH, Crop.COVER);
-	const large = blob.size > 1_500_000;
-
-	for (let q = large ? 90 : 100; q >= 70; q -= 10) {
-		const result = await canvas.convertToBlob({
-			// Profile avatars and banners only accepts PNG and JPEG
-			type: 'image/jpeg',
-			quality: q / 100,
-		});
-
-		if (result.size <= MAX_SIZE) {
-			return { blob: result, ratio: { width: width, height: height } };
-		}
-	}
-
-	throw new Error(`Unable to compress image according to criteria`);
-};
-
-export const getImageFromBlob = (blob: Blob): Promise<HTMLImageElement> => {
+const getImageFromBlob = (blob: Blob): Promise<HTMLImageElement> => {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
 		const image = document.createElement('img');
@@ -117,12 +76,12 @@ export const getImageFromBlob = (blob: Blob): Promise<HTMLImageElement> => {
 	});
 };
 
-export const enum Crop {
+const enum Crop {
 	CONTAIN,
 	COVER,
 }
 
-export const getResizedImage = (img: HTMLImageElement, maxW: number, maxH: number, mode: Crop) => {
+const getResizedImage = (img: HTMLImageElement, maxW: number, maxH: number, mode: Crop) => {
 	let scale = 1;
 	let w = img.naturalWidth;
 	let h = img.naturalHeight;

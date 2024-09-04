@@ -1,4 +1,4 @@
-export interface ErrorPageProps {
+interface ErrorPageProps {
 	error: unknown;
 	reset: () => void;
 }

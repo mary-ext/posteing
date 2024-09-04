@@ -13,7 +13,7 @@ import Divider from '../../divider';
 import CharCounterAccessory from '../../input/char-counter-accessory';
 import TextareaInput from '../../textarea-input';
 
-export interface ImageAltDialogProps {
+interface ImageAltDialogProps {
 	image: Blob;
 	value: string;
 	onChange: (next: string) => void;

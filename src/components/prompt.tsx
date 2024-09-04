@@ -10,7 +10,7 @@ import Button from './button';
 import { Backdrop } from './dialog';
 import { Fieldset } from './fieldset';
 
-export interface PromptContainerProps {
+interface PromptContainerProps {
 	disabled?: boolean;
 	maxWidth?: 'sm' | 'md';
 	children: JSX.Element;
@@ -63,9 +63,8 @@ const getPromptDesktopWidth = ({ maxWidth = 'sm' }: PromptContainerProps) => {
 	}
 };
 
-export { PromptContainer as Container };
 
-export interface PromptTitleProps {
+interface PromptTitleProps {
 	children: JSX.Element;
 }
 
@@ -78,9 +77,8 @@ const PromptTitle = (props: PromptTitleProps) => {
 	);
 };
 
-export { PromptTitle as Title };
 
-export interface PromptDescriptionProps {
+interface PromptDescriptionProps {
 	children: JSX.Element;
 }
 
@@ -88,9 +86,8 @@ const PromptDescription = (props: PromptDescriptionProps) => {
 	return <p class="text-pretty text-sm text-contrast-muted">{props.children}</p>;
 };
 
-export { PromptDescription as Description };
 
-export interface PromptActionsProps {
+interface PromptActionsProps {
 	children: JSX.Element;
 }
 
@@ -99,9 +96,8 @@ const PromptActions = (props: PromptActionsProps) => {
 	return <div class={`flex flex-col gap-3` + (!isDesktop() ? ` mt-5` : ` mt-6`)}>{props.children}</div>;
 };
 
-export { PromptActions as Actions };
 
-export interface PromptActionProps {
+interface PromptActionProps {
 	variant?: 'outline' | 'primary' | 'danger';
 	noClose?: boolean;
 	disabled?: boolean;
@@ -123,9 +119,8 @@ const PromptAction = (props: PromptActionProps) => {
 	);
 };
 
-export { PromptAction as Action };
 
-export interface PromptConfirmProps {
+interface PromptConfirmProps {
 	title: JSX.Element;
 	description: JSX.Element;
 	onConfirm?: () => void;

@@ -4,7 +4,7 @@ import { parseAtUri } from '~/api/utils/strings';
 
 import Avatar from '../avatar';
 
-export interface ListEmbedProps {
+interface ListEmbedProps {
 	/** Expected to be static */
 	list: AppBskyGraphDefs.ListView;
 	/** Expected to be static */

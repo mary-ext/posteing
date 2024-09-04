@@ -3,6 +3,6 @@ export interface GlobalPreferenceSchema {
 	ui: UiPreferences;
 }
 
-export interface UiPreferences {
+interface UiPreferences {
 	theme: 'system' | 'light' | 'dark';
 }

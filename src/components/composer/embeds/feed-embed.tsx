@@ -11,7 +11,7 @@ import FeedEmbedContent from '~/components/embeds/feed-embed';
 import type { PostFeedEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface FeedEmbedProps extends BaseEmbedProps {
+interface FeedEmbedProps extends BaseEmbedProps {
 	embed: PostFeedEmbed;
 }
 

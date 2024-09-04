@@ -2,7 +2,7 @@ import { autofocusIfEnabled, modelText } from '~/lib/utils/input-refs';
 
 import MagnifyingGlassOutlinedIcon from './icons-central/magnifying-glass-outline';
 
-export interface SearchInputProps {
+interface SearchInputProps {
 	value: string;
 	onChange: (next: string) => void;
 	placeholder?: string;

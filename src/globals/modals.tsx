@@ -4,7 +4,7 @@ import { assert } from '~/lib/utils/invariant';
 
 type ModalRenderer = (context: ModalContext) => JSX.Element;
 
-export interface ModalState {
+interface ModalState {
 	id: number;
 	render: ModalRenderer;
 }
@@ -33,10 +33,6 @@ export const closeModal = (id: number): void => {
 
 		return $modals.toSpliced(index, 1);
 	});
-};
-
-export const closeAllModals = (): void => {
-	_setModals([]);
 };
 
 export interface ModalContext {

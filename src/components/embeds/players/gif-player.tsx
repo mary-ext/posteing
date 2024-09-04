@@ -5,7 +5,7 @@ import PlaySolidIcon from '~/components/icons-central/play-solid';
 
 import type { BlueskyGifSnippet } from '../lib/snippet';
 
-export interface GifPlayerProps {
+interface GifPlayerProps {
 	/** Expected to be static */
 	snippet: BlueskyGifSnippet;
 }

@@ -4,7 +4,7 @@ import { useModalContext } from '~/globals/modals';
 
 import * as Menu from '../../menu';
 
-export interface ContentWarningMenuProps {
+interface ContentWarningMenuProps {
 	anchor: HTMLElement;
 	value: string[];
 	onChange: (next: string[]) => void;

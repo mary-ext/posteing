@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js';
 
-export interface FABProps {
+interface FABProps {
 	label: string;
 	icon: Component;
 	onClick?: () => void;

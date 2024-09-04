@@ -1,6 +1,6 @@
 import { createContext, createMemo, useContext, type ParentProps } from 'solid-js';
 
-export interface FieldsetContext {
+interface FieldsetContext {
 	readonly disabled: boolean;
 }
 
@@ -14,7 +14,7 @@ export const useFieldset = (): FieldsetContext => {
 	return useContext(Context);
 };
 
-export interface FieldsetProps extends ParentProps {
+interface FieldsetProps extends ParentProps {
 	standalone?: boolean;
 	disabled?: boolean;
 }

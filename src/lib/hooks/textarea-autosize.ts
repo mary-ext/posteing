@@ -47,7 +47,7 @@ const hiddenStyles = {
 	zIndex: '-1000',
 };
 
-export interface AutosizeOptions {
+interface AutosizeOptions {
 	minRows?: number;
 	maxRows?: number;
 }

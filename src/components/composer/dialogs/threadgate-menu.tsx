@@ -11,7 +11,7 @@ import * as Menu from '../../menu';
 
 import { ThreadgateKnownValue, getThreadgateValue } from '../lib/state';
 
-export interface ThreadgateMenuProps {
+interface ThreadgateMenuProps {
 	anchor: HTMLElement;
 	value: AppBskyFeedThreadgate.Record['allow'];
 	onChange: (next: AppBskyFeedThreadgate.Record['allow']) => void;

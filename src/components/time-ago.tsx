@@ -3,7 +3,7 @@ import { createRenderEffect, createSignal, type Accessor, type JSX } from 'solid
 import { formatAbsDateTime, formatReltime } from '~/lib/intl/time';
 import { requestIdle } from '~/lib/utils/misc';
 
-export interface TimeAgoProps {
+interface TimeAgoProps {
 	value: string | number;
 	/** Expected to be static */
 	absolute?: (time: number) => string;

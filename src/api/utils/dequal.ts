@@ -36,19 +36,3 @@ export const dequal = (a: any, b: any): boolean => {
 
 	return a !== a && b !== b;
 };
-
-export const EQUALS_DEQUAL = { equals: dequal } as const;
-
-export const sequal = (a: any[], b: any[]): boolean => {
-	let len = a.length;
-
-	if (len === b.length) {
-		while (len--) {
-			if (a[len] !== b[len]) {
-				return false;
-			}
-		}
-	}
-
-	return len === -1;
-};

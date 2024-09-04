@@ -1,6 +1,8 @@
-import { For, onCleanup } from 'solid-js';
+import { For } from 'solid-js';
 
 import { openModal } from '~/globals/modals';
+
+import { convertBlobToUrl } from '~/lib/utils/blob';
 
 import IconButton from '../../icon-button';
 import CrossLargeOutlinedIcon from '../../icons-central/cross-large-outline';
@@ -11,7 +13,7 @@ import ImageAltDialogLazy from '../dialogs/image-alt-dialog-lazy';
 import type { PostImageEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface ImageEmbedProps extends BaseEmbedProps {
+interface ImageEmbedProps extends BaseEmbedProps {
 	embed: PostImageEmbed;
 }
 
@@ -23,8 +25,7 @@ const ImageEmbed = (props: ImageEmbedProps) => {
 		>
 			<For each={props.embed.images}>
 				{(image, index) => {
-					const thumbUrl = URL.createObjectURL(image.blob);
-					onCleanup(() => URL.revokeObjectURL(thumbUrl));
+					const thumbUrl = convertBlobToUrl(image.blob);
 
 					return (
 						<div class="relative shrink-0 snap-end snap-always scroll-m-4 overflow-hidden rounded border border-outline">

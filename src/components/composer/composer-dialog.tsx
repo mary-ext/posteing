@@ -91,7 +91,7 @@ import {
 } from './lib/state';
 import { GLOBAL_LABELS } from './moderation-labels';
 
-export interface ComposerDialogProps {
+interface ComposerDialogProps {
 	/** This is static, meant for initializing the composer state */
 	params?: CreateComposerStateOptions;
 	onPublish?: () => void;

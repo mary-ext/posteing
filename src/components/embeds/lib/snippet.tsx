@@ -8,12 +8,12 @@ export const enum SnippetType {
 	IFRAME,
 }
 
-export const enum SnippetSource {
+const enum SnippetSource {
 	YOUTUBE,
 	SOUNDCLOUD,
 }
 
-export interface LinkSnippet {
+interface LinkSnippet {
 	type: SnippetType.LINK;
 	/** Domain name */
 	domain?: string;
@@ -31,7 +31,7 @@ export interface BlueskyGifSnippet {
 	description: string;
 }
 
-export interface IframeSnippet {
+interface IframeSnippet {
 	type: SnippetType.IFRAME;
 	/** Source type */
 	source: SnippetSource;
@@ -43,7 +43,7 @@ export interface IframeSnippet {
 	ratio: string;
 }
 
-export type Snippet = LinkSnippet | BlueskyGifSnippet | IframeSnippet;
+type Snippet = LinkSnippet | BlueskyGifSnippet | IframeSnippet;
 
 export const detectSnippet = (link: AppBskyEmbedExternal.ViewExternal, linkOnly = false): Snippet => {
 	const url = link.uri;

@@ -5,7 +5,7 @@ import { useTextareaAutosize } from '~/lib/hooks/textarea-autosize';
 
 import { useFieldset } from './fieldset';
 
-export interface TextareaInputProps {
+interface TextareaInputProps {
 	ref?: (node: HTMLTextAreaElement) => void;
 	label?: string;
 	required?: boolean;

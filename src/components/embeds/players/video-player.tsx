@@ -4,7 +4,7 @@ import Hls from 'hls.js';
 
 import type { AppBskyEmbedVideo } from '@atcute/client/lexicons';
 
-export interface VideoPlayerProps {
+interface VideoPlayerProps {
 	/** Expected to be static */
 	embed: AppBskyEmbedVideo.View;
 }

@@ -15,7 +15,7 @@ import TextareaInput from '../../textarea-input';
 
 import type { GifMedia } from '../gifs/gif-search-dialog';
 
-export interface GifAltDialogProps {
+interface GifAltDialogProps {
 	gif: GifMedia;
 	value: string | undefined;
 	onChange: (next: string | undefined) => void;

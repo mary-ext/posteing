@@ -25,7 +25,7 @@ export const createES256Key = async (): Promise<DPoPKey> => {
 	};
 };
 
-export const createDPoPSignage = (issuer: string, dpopKey: DPoPKey) => {
+const createDPoPSignage = (issuer: string, dpopKey: DPoPKey) => {
 	const headerString = toBase64Url(encoder.encode(JSON.stringify(dpopKey.jwt)));
 
 	const constructPayload = (

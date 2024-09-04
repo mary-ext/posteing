@@ -2,7 +2,7 @@ import { formatQueryError } from '~/api/utils/error';
 
 import Button from './button';
 
-export interface ErrorViewProps {
+interface ErrorViewProps {
 	error: unknown;
 	onRetry?: () => void;
 }

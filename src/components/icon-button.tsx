@@ -2,7 +2,7 @@ import type { Component, JSX } from 'solid-js';
 
 import { useFieldset } from './fieldset';
 
-export interface IconButtonProps {
+interface IconButtonProps {
 	icon: Component;
 	title: string;
 	// href?: string;

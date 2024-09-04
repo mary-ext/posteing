@@ -4,7 +4,7 @@ import Avatar, { getUserAvatarType } from '../avatar';
 import ImageEmbed from '../embeds/image-embed';
 import TimeAgo from '../time-ago';
 
-export interface ComposerReplyContextProps {
+interface ComposerReplyContextProps {
 	/** Expected to be static */
 	post: AppBskyFeedDefs.PostView;
 	pending?: boolean;

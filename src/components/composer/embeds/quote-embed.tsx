@@ -13,7 +13,7 @@ import QuoteEmbedContent from '~/components/embeds/quote-embed';
 import type { PostQuoteEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface QuoteEmbedProps extends BaseEmbedProps {
+interface QuoteEmbedProps extends BaseEmbedProps {
 	embed: PostQuoteEmbed;
 }
 

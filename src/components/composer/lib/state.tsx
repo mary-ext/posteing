@@ -6,8 +6,8 @@ import { parseRt, type PreliminaryRichText } from '~/api/richtext/parser/parse';
 
 import { primarySystemLanguage } from '~/globals/locales';
 
-import { assert } from '~/lib/utils/invariant';
 import type { ComposerPreferences } from '~/lib/preferences/account';
+import { assert } from '~/lib/utils/invariant';
 
 import type { GifMedia } from '../gifs/gif-search-dialog';
 
@@ -31,7 +31,7 @@ export const enum EmbedKind {
 	NONE = 0,
 }
 
-export interface PostImage {
+interface PostImage {
 	blob: Blob;
 	alt: string;
 }
@@ -120,17 +120,11 @@ export function getAvailableEmbed(embed: PostEmbed | undefined): number {
 }
 
 /** Retrieve media embeds of specified type, if one is present */
-export function getMediaEmbed(
-	embed: PostEmbed | undefined,
-	type: EmbedKind.EXTERNAL,
-): PostExternalEmbed | undefined;
-export function getMediaEmbed(
-	embed: PostEmbed | undefined,
-	type: EmbedKind.IMAGE,
-): PostImageEmbed | undefined;
-export function getMediaEmbed(embed: PostEmbed | undefined, type: EmbedKind.GIF): PostGifEmbed | undefined;
-export function getMediaEmbed(embed: PostEmbed | undefined, type: number): PostMediaEmbed | undefined;
-export function getMediaEmbed(embed: PostEmbed | undefined, type: number): PostMediaEmbed | undefined {
+function getMediaEmbed(embed: PostEmbed | undefined, type: EmbedKind.EXTERNAL): PostExternalEmbed | undefined;
+function getMediaEmbed(embed: PostEmbed | undefined, type: EmbedKind.IMAGE): PostImageEmbed | undefined;
+function getMediaEmbed(embed: PostEmbed | undefined, type: EmbedKind.GIF): PostGifEmbed | undefined;
+function getMediaEmbed(embed: PostEmbed | undefined, type: number): PostMediaEmbed | undefined;
+function getMediaEmbed(embed: PostEmbed | undefined, type: number): PostMediaEmbed | undefined {
 	assert((type & EmbedKind.MEDIA) !== 0);
 
 	if (embed) {
@@ -144,33 +138,6 @@ export function getMediaEmbed(embed: PostEmbed | undefined, type: number): PostM
 	}
 }
 
-/** Retrieve record embed of specified type, if one is present */
-export function getRecordEmbed(embed: PostEmbed | undefined, type: EmbedKind.FEED): PostFeedEmbed | undefined;
-export function getRecordEmbed(embed: PostEmbed | undefined, type: EmbedKind.LIST): PostListEmbed | undefined;
-export function getRecordEmbed(
-	embed: PostEmbed | undefined,
-	type: EmbedKind.QUOTE,
-): PostQuoteEmbed | undefined;
-export function getRecordEmbed(embed: PostEmbed | undefined, type: number): PostRecordEmbed | undefined;
-export function getRecordEmbed(embed: PostEmbed | undefined, type: number): PostRecordEmbed | undefined {
-	assert((type & EmbedKind.RECORD) !== 0);
-
-	if (embed) {
-		if (embed.type & type) {
-			return embed as PostRecordEmbed;
-		}
-
-		if (embed.type === EmbedKind.RECORD_WITH_MEDIA && embed.record.type & type) {
-			return embed.record;
-		}
-	}
-}
-
-/** Returns amount of images, if an image embed is present */
-export function getImageCount(embed: PostEmbed | undefined): number {
-	return getMediaEmbed(embed, EmbedKind.IMAGE)?.images.length ?? 0;
-}
-
 /** Retrieves labels from external and image embeds, if one is present */
 export function getEmbedLabels(embed: PostEmbed | undefined): string[] | undefined {
 	const thing = getMediaEmbed(embed, EmbedKind.EXTERNAL | EmbedKind.IMAGE) as
@@ -180,23 +147,6 @@ export function getEmbedLabels(embed: PostEmbed | undefined): string[] | undefin
 	if (thing) {
 		return thing.labels;
 	}
-}
-
-/** Determine if any images or GIFs are missing alt text, if one is present */
-export function isAltTextMissing(embed: PostEmbed | undefined): boolean {
-	const thing = getMediaEmbed(embed, EmbedKind.IMAGE | EmbedKind.GIF) as PostImageEmbed | PostGifEmbed;
-
-	if (thing) {
-		if (thing.type === EmbedKind.IMAGE) {
-			return thing.images.every((i) => i.alt.length === 0);
-		}
-
-		if (thing.type === EmbedKind.GIF) {
-			return thing.alt === undefined;
-		}
-	}
-
-	return false;
 }
 
 // Post state
@@ -238,7 +188,7 @@ interface ParsedPost {
 	r: PreliminaryRichText;
 }
 
-export interface CreatePostStateOptions {
+interface CreatePostStateOptions {
 	text?: string;
 	embed?: PostEmbed;
 	languages?: string[];

@@ -14,7 +14,7 @@ import GifAltDialogLazy from '../dialogs/gif-alt-dialog-lazy';
 import type { PostGifEmbed } from '../lib/state';
 import type { BaseEmbedProps } from './types';
 
-export interface GifEmbedProps extends BaseEmbedProps {
+interface GifEmbedProps extends BaseEmbedProps {
 	embed: PostGifEmbed;
 }
 

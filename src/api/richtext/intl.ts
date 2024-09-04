@@ -1,7 +1,6 @@
 var _graphemeLen: (text: string) => number;
 
-export const textEncoder = new TextEncoder();
-export const textDecoder = new TextDecoder();
+const textEncoder = new TextEncoder();
 
 export const graphemeLen = (text: string) => {
 	var length = asciiLen(text);
@@ -13,7 +12,7 @@ export const graphemeLen = (text: string) => {
 	return length;
 };
 
-export const asciiLen = (str: string) => {
+const asciiLen = (str: string) => {
 	for (var idx = 0, len = str.length; idx < len; idx++) {
 		const char = str.charCodeAt(idx);
 

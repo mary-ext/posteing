@@ -3,26 +3,26 @@ import { safeUrlParse } from '../../utils/strings';
 import { graphemeLen } from '../intl';
 import { toShortUrl } from '../url';
 
-export interface TextPreliminarySegment {
+interface TextPreliminarySegment {
 	type: 'text';
 	raw: string;
 	text: string;
 }
 
-export interface EscapePreliminarySegment {
+interface EscapePreliminarySegment {
 	type: 'escape';
 	raw: string;
 	text: string;
 }
 
-export interface LinkPreliminarySegment {
+interface LinkPreliminarySegment {
 	type: 'link';
 	raw: string;
 	text: string;
 	uri: string;
 }
 
-export interface MdLinkPreliminarySegment {
+interface MdLinkPreliminarySegment {
 	type: 'mdlink';
 	raw: [_0: string, label: string, _1: string, uri: string, _2: string];
 	text: string;
@@ -30,28 +30,28 @@ export interface MdLinkPreliminarySegment {
 	valid: boolean;
 }
 
-export interface MentionPreliminarySegment {
+interface MentionPreliminarySegment {
 	type: 'mention';
 	raw: string;
 	text: string;
 	handle: string;
 }
 
-export interface TagPreliminarySegment {
+interface TagPreliminarySegment {
 	type: 'tag';
 	raw: string;
 	text: string;
 	tag: string;
 }
 
-export interface EmotePreliminarySegment {
+interface EmotePreliminarySegment {
 	type: 'emote';
 	raw: string;
 	text: string;
 	name: string;
 }
 
-export type PreliminarySegment =
+type PreliminarySegment =
 	| EmotePreliminarySegment
 	| EscapePreliminarySegment
 	| LinkPreliminarySegment
@@ -104,7 +104,7 @@ const enum CharCode {
 }
 
 const WS_RE = / +(?=\n)|\n(?=(?: *\n){2} *)/g;
-export const EOF_WS_RE = /\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
+const EOF_WS_RE = /\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
 
 export const PLAIN_WS_RE = /^\s+|\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
 
@@ -440,20 +440,4 @@ export const parseRt = (source: string): PreliminaryRichText => {
 		segments: segments,
 		links: links,
 	};
-};
-
-export const getRtText = (rt: PreliminaryRichText): string => {
-	const segments = rt.segments;
-	let str = '';
-
-	for (let i = 0, ilen = segments.length; i < ilen; i++) {
-		const segment = segments[i];
-		str += segment.text;
-	}
-
-	return str;
-};
-
-export const getRtGraphemeLength = (rt: PreliminaryRichText): number => {
-	return graphemeLen(getRtText(rt));
 };

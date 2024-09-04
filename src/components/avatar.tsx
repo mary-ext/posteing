@@ -14,7 +14,7 @@ const AVATARS = {
 	user: DefaultUserAvatar,
 };
 
-export interface AvatarProps {
+interface AvatarProps {
 	type: keyof typeof AVATARS;
 	src?: string;
 	title?: string;

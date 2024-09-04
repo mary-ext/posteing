@@ -7,9 +7,9 @@
 
 import { nanoid } from 'nanoid/non-secure';
 
-export type Action = 'traverse' | 'push' | 'replace' | 'update';
+type Action = 'traverse' | 'push' | 'replace' | 'update';
 
-export interface Path {
+interface Path {
 	/** A URL pathname, beginning with a /. */
 	pathname: string;
 	/** A URL search string, beginning with a ?. */
@@ -27,20 +27,20 @@ export interface Location extends Path {
 	key: string;
 }
 
-export interface Update {
+interface Update {
 	action: Action;
 	location: Location;
 }
 
-export type Listener = (update: Update) => void;
+type Listener = (update: Update) => void;
 
-export interface Transition extends Update {
+interface Transition extends Update {
 	retry(): void;
 }
 
-export type Blocker = (tx: Transition) => void;
+type Blocker = (tx: Transition) => void;
 
-export type To = string | Partial<Path>;
+type To = string | Partial<Path>;
 
 export interface History {
 	readonly location: Location;
@@ -58,7 +58,7 @@ export interface History {
 	block(blocker: Blocker): () => void;
 }
 
-export interface NavigateOptions {
+interface NavigateOptions {
 	replace?: boolean;
 	state?: unknown;
 }
@@ -68,7 +68,7 @@ export interface NavigateOptions {
  * browser environment. This is the standard for most web apps and provides the
  * cleanest URLs the browser's address bar.
  */
-export interface BrowserHistory extends History {}
+interface BrowserHistory extends History {}
 
 const warning = (cond: any, message: string) => {
 	if (!import.meta.env.PROD && !cond) {
@@ -85,7 +85,7 @@ interface HistoryState {
 const BeforeUnloadEventType = 'beforeunload';
 const PopStateEventType = 'popstate';
 
-export interface BrowserHistoryOptions {
+interface BrowserHistoryOptions {
 	window?: Window;
 }
 
@@ -332,7 +332,7 @@ const createKey = () => {
 /**
  * Creates a string URL path from the given pathname, search, and hash components.
  */
-export const createPath = ({ pathname = '/', search = '', hash = '' }: Partial<Path>) => {
+const createPath = ({ pathname = '/', search = '', hash = '' }: Partial<Path>) => {
 	if (search && search !== '?') {
 		pathname += search.charAt(0) === '?' ? search : '?' + search;
 	}
@@ -345,7 +345,7 @@ export const createPath = ({ pathname = '/', search = '', hash = '' }: Partial<P
 /**
  * Parses a string URL path into its separate pathname, search, and hash components.
  */
-export const parsePath = (path: string): Partial<Path> => {
+const parsePath = (path: string): Partial<Path> => {
 	const parsedPath: Partial<Path> = {};
 
 	if (path) {

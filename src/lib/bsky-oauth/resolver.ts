@@ -5,14 +5,14 @@ import { isDid } from '~/api/utils/strings';
 
 import { database } from './globals';
 import { CachedGetter, type GetCachedOptions } from './store/getter';
+import type { ResolvedIdentity } from './types/identity';
 import type { AuthorizationServerMetadata, ProtectedResourceMetadata } from './types/server';
 import { extractContentType } from './utils';
-import type { ResolvedIdentity } from './types/identity';
 
 const DID_WEB_RE =
 	/^([a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*(?:\.[a-zA-Z]{2,}))((?::[a-zA-Z0-9._%-]*[a-zA-Z0-9._-])*)$/;
 
-export const handleResolver = new CachedGetter(async (handle: string, options): Promise<At.DID> => {
+const handleResolver = new CachedGetter(async (handle: string, options): Promise<At.DID> => {
 	const url = `https://api.bsky.app` + `/xrpc/com.atproto.identity.resolveHandle` + `?handle=${handle}`;
 
 	const response = await fetch(url, { signal: options?.signal });
@@ -24,7 +24,7 @@ export const handleResolver = new CachedGetter(async (handle: string, options): 
 	return json.did;
 }, database.handles);
 
-export const identityResolver = new CachedGetter(async (did: At.DID, options): Promise<DidDocument> => {
+const identityResolver = new CachedGetter(async (did: At.DID, options): Promise<DidDocument> => {
 	const init: RequestInit = { signal: options?.signal };
 
 	const colon_index = did.indexOf(':', 4);
@@ -74,7 +74,7 @@ export const identityResolver = new CachedGetter(async (did: At.DID, options): P
 	return doc;
 }, database.didDocuments);
 
-export const protectedResourceMetadataResolver = new CachedGetter(
+const protectedResourceMetadataResolver = new CachedGetter(
 	async (host: string, options): Promise<ProtectedResourceMetadata> => {
 		const url = new URL(`/.well-known/oauth-protected-resource`, host);
 		const response = await fetch(url, {
@@ -171,26 +171,7 @@ export const resolveFromIdentity = async (
 	};
 };
 
-export const resolveFromService = async (
-	input: string,
-	options?: GetCachedOptions,
-): Promise<{ metadata: AuthorizationServerMetadata }> => {
-	try {
-		const metadata = await getMetadataFromResourceServer(input, options);
-		return { metadata };
-	} catch (err) {
-		if (err instanceof ResolverError) {
-			try {
-				const metadata = await getMetadataFromAuthorizationServer(input, options);
-				return { metadata };
-			} catch {}
-		}
-
-		throw err;
-	}
-};
-
-export const getMetadataFromResourceServer = async (input: string, options?: GetCachedOptions) => {
+const getMetadataFromResourceServer = async (input: string, options?: GetCachedOptions) => {
 	const rs_metadata = await protectedResourceMetadataResolver.get(input, options);
 
 	if (rs_metadata.authorization_servers?.length !== 1) {
@@ -216,6 +197,6 @@ export const getMetadataFromAuthorizationServer = (input: string, options?: GetC
 	return authorizationServerMetadataResolver.get(input, options);
 };
 
-export class ResolverError extends Error {
+class ResolverError extends Error {
 	name = 'ResolverError';
 }

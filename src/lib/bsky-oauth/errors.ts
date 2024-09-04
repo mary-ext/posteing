@@ -10,24 +10,6 @@ export class TokenRefreshError extends Error {
 	}
 }
 
-export class TokenRevokedError extends Error {
-	constructor(
-		public readonly sub: At.DID,
-		message: string = `session for ${sub} has been revoked`,
-	) {
-		super(message);
-	}
-}
-
-export class TokenInvalidError extends Error {
-	constructor(
-		public readonly sub: At.DID,
-		message = `invalid session for ${sub}`,
-	) {
-		super(message);
-	}
-}
-
 export class OAuthResponseError extends Error {
 	readonly error: string | undefined;
 	readonly description: string | undefined;

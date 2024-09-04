@@ -7,7 +7,7 @@ import PlaySolidIcon from '../icons-central/play-solid';
 
 const VideoPlayer = lazy(() => import('./players/video-player'));
 
-export interface VideoEmbedProps {
+interface VideoEmbedProps {
 	/** Expected to be static */
 	embed: AppBskyEmbedVideo.View;
 	blur?: boolean;

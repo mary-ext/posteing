@@ -13,7 +13,7 @@ import { on } from '~/lib/utils/misc';
 import Button from './button';
 import CheckOutlinedIcon from './icons-central/check-outline';
 
-export interface MenuContainerProps {
+interface MenuContainerProps {
 	anchor: HTMLElement;
 	placement?: Placement;
 	cover?: boolean;
@@ -147,7 +147,7 @@ const getSibling = (node: Element, next: boolean): HTMLElement | null => {
 
 export { MenuContainer as Container };
 
-export interface MenuItemProps {
+interface MenuItemProps {
 	icon?: Component;
 	label: string;
 	variant?: 'default' | 'danger';

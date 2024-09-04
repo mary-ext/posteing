@@ -74,7 +74,7 @@ const fetchTenor = async ({ uri, params, signal }: FetchTenorOptions): Promise<T
 	return json;
 };
 
-export interface TenorResponse {
+interface TenorResponse {
 	next: string | undefined;
 	results: Gif[];
 }

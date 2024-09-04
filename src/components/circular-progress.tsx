@@ -1,4 +1,4 @@
-export interface CircularProgressProps {
+interface CircularProgressProps {
 	size?: number;
 }
 

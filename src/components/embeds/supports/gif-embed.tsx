@@ -7,7 +7,7 @@ import type { BlueskyGifSnippet } from '../lib/snippet';
 
 const GifPlayer = lazy(() => import('../players/gif-player'));
 
-export interface GifEmbedProps {
+interface GifEmbedProps {
 	/** Expected to be static */
 	snippet: BlueskyGifSnippet;
 	disabled?: boolean;

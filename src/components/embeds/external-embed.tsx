@@ -11,7 +11,7 @@ import PlaySolidIcon from '../icons-central/play-solid';
 import { SnippetType, detectSnippet } from './lib/snippet';
 import { GifEmbed } from './supports/gif-embed';
 
-export interface ExternalEmbedProps {
+interface ExternalEmbedProps {
 	/** Expected to be static */
 	embed: AppBskyEmbedExternal.View;
 	/** Expected to be static */

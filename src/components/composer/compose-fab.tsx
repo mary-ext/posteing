@@ -5,7 +5,7 @@ import WriteOutlinedIcon from '../icons-central/write-outline';
 
 import ComposerDialogLazy from './composer-dialog-lazy';
 
-export interface ComposeFABProps {}
+interface ComposeFABProps {}
 
 const ComposeFAB = ({}: ComposeFABProps) => {
 	return (

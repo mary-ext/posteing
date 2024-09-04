@@ -9,7 +9,7 @@ import { OAuthServerAgent } from './server-agent';
 import type { DPoPKey } from '../types/dpop';
 import type { TokenSet } from '../types/token';
 
-export interface Session {
+interface Session {
 	dpopKey: DPoPKey;
 	tokenSet: TokenSet;
 }

@@ -28,6 +28,7 @@ import { compressPostImage } from '~/lib/bsky/image';
 import type { AgentContext } from '~/lib/states/agent';
 import { assert } from '~/lib/utils/invariant';
 
+import { serializeRecordCid } from './cid';
 import {
 	EmbedKind,
 	getEmbedLabels,
@@ -38,14 +39,12 @@ import {
 	type PostRecordEmbed,
 } from './state';
 
-export interface PublishOptions {
+interface PublishOptions {
 	agent: AgentContext;
 	queryClient: QueryClient;
 	state: ComposerState;
 	onLog?: (msg: string) => void;
 }
-
-let cidPromise: Promise<typeof import('./cid')>;
 
 export const publish = async ({ agent, queryClient, state, onLog: log }: PublishOptions) => {
 	const rpc = agent.rpc;
@@ -146,8 +145,6 @@ export const publish = async ({ agent, queryClient, state, onLog: log }: Publish
 
 		// Retrieve the next ref
 		if (idx !== len - 1) {
-			const { serializeRecordCid } = await (cidPromise ||= import('./cid'));
-
 			const serialized = await serializeRecordCid(record);
 
 			const ref: ComAtprotoRepoStrongRef.Main = {
@@ -434,4 +431,4 @@ export const publish = async ({ agent, queryClient, state, onLog: log }: Publish
 	}
 };
 
-export class InvalidHandleError extends Error {}
+class InvalidHandleError extends Error {}

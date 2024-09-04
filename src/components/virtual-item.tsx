@@ -46,7 +46,7 @@ const getVirtualStore = (ctx: ReturnType<typeof UNSAFE_useViewContext> | undefin
 	return store;
 };
 
-export interface VirtualItemProps {
+interface VirtualItemProps {
 	estimateHeight?: number;
 	children?: JSX.Element;
 }

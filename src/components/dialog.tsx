@@ -15,7 +15,7 @@ const DialogBackdrop = () => {
 
 export { DialogBackdrop as Backdrop };
 
-export interface DialogContainerProps extends ParentProps {
+interface DialogContainerProps extends ParentProps {
 	fullHeight?: boolean;
 	centered?: boolean;
 	maxWidth?: 'sm' | 'md';
@@ -81,7 +81,7 @@ const containerClasses = (isDesktop: () => boolean, props: DialogContainerProps)
 
 export { DialogContainer as Container };
 
-export interface DialogHeaderProps extends ParentProps {}
+interface DialogHeaderProps extends ParentProps {}
 
 const DialogHeader = (props: DialogHeaderProps) => {
 	return <div class="flex h-13 shrink-0 items-center justify-between gap-4 px-2.5">{props.children}</div>;
@@ -89,7 +89,7 @@ const DialogHeader = (props: DialogHeaderProps) => {
 
 export { DialogHeader as Header };
 
-export interface DialogHeadingProps {
+interface DialogHeadingProps {
 	title?: string;
 	subtitle?: string;
 }
@@ -104,7 +104,7 @@ const DialogHeading = (props: DialogHeadingProps) => {
 
 export { DialogHeading as Heading };
 
-export interface DialogHeaderAccessoryProps extends ParentProps {}
+interface DialogHeaderAccessoryProps extends ParentProps {}
 
 const DialogHeaderAccessory = (props: DialogHeaderAccessoryProps) => {
 	return <div class="flex shrink-0 gap-2 empty:hidden">{props.children}</div>;
@@ -112,7 +112,7 @@ const DialogHeaderAccessory = (props: DialogHeaderAccessoryProps) => {
 
 export { DialogHeaderAccessory as HeaderAccessory };
 
-export interface DialogCloseProps {
+interface DialogCloseProps {
 	onClose?: () => void;
 }
 
@@ -125,7 +125,7 @@ const DialogClose = (props: DialogCloseProps) => {
 
 export { DialogClose as Close };
 
-export interface DialogBodyProps extends ParentProps {
+interface DialogBodyProps extends ParentProps {
 	unpadded?: boolean;
 	class?: string;
 }
@@ -140,7 +140,7 @@ const DialogBody = (props: DialogBodyProps) => {
 
 export { DialogBody as Body };
 
-export interface DialogActionsProps extends ParentProps {}
+interface DialogActionsProps extends ParentProps {}
 
 const DialogActions = (props: DialogActionsProps) => {
 	const isDesktop = useMediaQuery('(width >= 688px) and (height >= 500px)');

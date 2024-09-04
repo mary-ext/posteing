@@ -28,7 +28,7 @@ import { assert } from '~/lib/utils/invariant';
 import Avatar, { getUserAvatarType } from '../avatar';
 import CircularProgress from '../circular-progress';
 
-export interface ComposerInputProps {
+interface ComposerInputProps {
 	ref?: (el: HTMLTextAreaElement) => void;
 
 	value: string;

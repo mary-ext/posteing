@@ -2,7 +2,7 @@ import { createMemo } from 'solid-js';
 
 import { formatLong } from '~/lib/intl/number';
 
-export interface CharCounterAccessoryProps {
+interface CharCounterAccessoryProps {
 	value: number;
 	max: number;
 }

@@ -1,6 +1,6 @@
 type Gutter = false | 'sm' | 'md';
 
-export interface DividerProps {
+interface DividerProps {
 	gutter?: Gutter;
 	gutterTop?: Gutter;
 	gutterBottom?: Gutter;

@@ -13,12 +13,12 @@ import CrossLargeOutlinedIcon from '../icons-central/cross-large-outline';
 import EyeOpenOutlinedIcon from '../icons-central/eye-open-outline';
 import EyeSlashOutlinedIcon from '../icons-central/eye-slash-outline';
 
-export interface Image {
+interface Image {
 	fullsize: string;
 	alt?: string;
 }
 
-export interface ImageViewerModalProps {
+interface ImageViewerModalProps {
 	active?: number;
 	images: Image[];
 }

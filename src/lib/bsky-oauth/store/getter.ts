@@ -6,13 +6,13 @@ export interface GetCachedOptions {
 	allowStale?: boolean;
 }
 
-export type Getter<K, V> = (
+type Getter<K, V> = (
 	key: K,
 	options: undefined | GetCachedOptions,
 	storedValue: undefined | V,
 ) => Awaitable<V>;
 
-export interface CachedGetterOptions<K, V> {
+interface CachedGetterOptions<K, V> {
 	isStale?: (key: K, value: V) => boolean | PromiseLike<boolean>;
 	lockKey?: (key: K) => string | undefined;
 	onStoreError?: (err: unknown, key: K, value: V) => void | PromiseLike<void>;

@@ -2,7 +2,7 @@ import { createMemo, type JSX } from 'solid-js';
 
 import { on } from '~/lib/utils/misc';
 
-export interface KeyedProps<T> {
+interface KeyedProps<T> {
 	value: T;
 	children: (value: T) => JSX.Element;
 }

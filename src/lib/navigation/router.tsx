@@ -24,7 +24,7 @@ import type { HistoryLogger } from './logger';
 
 // This is the only application-specific code we have here, might need to
 // move it elsewhere, maybe as a separate package?
-export interface RouteMeta {
+interface RouteMeta {
 	name?: string;
 	main?: boolean;
 	public?: boolean;
@@ -42,7 +42,7 @@ interface InternalRouteDefinition extends RouteDefinition {
 	_regex?: RegExp;
 }
 
-export interface RouterOptions {
+interface RouterOptions {
 	history: History;
 	logger: HistoryLogger;
 	routes: RouteDefinition[];
@@ -54,7 +54,7 @@ interface MatchedRoute {
 	readonly params: Record<string, string>;
 }
 
-export interface MatchedRouteState extends MatchedRoute {
+interface MatchedRouteState extends MatchedRoute {
 	readonly id: string;
 }
 
@@ -243,39 +243,13 @@ export const configureRouter = ({ history, logger: log, routes }: RouterOptions)
 
 const ViewContext = createContext<ViewContextObject>();
 
-const getMatchedRoute = () => {
-	const current = state();
-	const active = current.active;
-
-	const match = current.singles[active] || current.views[active];
-
-	if (match) {
-		return match;
-	}
-};
-
-export const useMatchedRoute = () => {
-	return createMemo(getMatchedRoute);
-};
-
 const useViewContext = () => {
 	return useContext(ViewContext)!;
 };
 
 export { useViewContext as UNSAFE_useViewContext };
 
-export const useParams = <T extends Record<string, string>>() => {
-	return useViewContext().route.params as T;
-};
-
-export const onRouteEnter = (cb: () => void) => {
-	const { route } = useViewContext();
-
-	cb();
-	onCleanup(routerEvents.on(route.id, (e) => e.enter && cb()));
-};
-
-export interface RouterViewProps {
+interface RouterViewProps {
 	render: (matched: MatchedRouteState) => JSX.Element;
 }
 

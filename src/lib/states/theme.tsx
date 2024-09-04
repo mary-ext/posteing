@@ -1,24 +1,16 @@
-import { createContext, createRenderEffect, createSignal, useContext, type ParentProps } from 'solid-js';
+import { createContext, createRenderEffect, createSignal, type ParentProps } from 'solid-js';
 
 import * as preferences from '~/globals/preferences';
 
 import { useMediaQuery } from '../hooks/media-query';
-import { assert } from '../utils/invariant';
 
 type Theme = 'light' | 'dark';
 
-export interface ThemeContext {
+interface ThemeContext {
 	readonly currentTheme: Theme;
 }
 
 const Context = createContext<ThemeContext>();
-
-export const useTheme = (): ThemeContext => {
-	const context = useContext(Context);
-	assert(context !== undefined, `Expected useTheme to be used under ThemeProvider`);
-
-	return context;
-};
 
 export const ThemeProvider = (props: ParentProps) => {
 	const [theme, setTheme] = createSignal<Theme>('light');

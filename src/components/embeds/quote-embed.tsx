@@ -14,7 +14,7 @@ import TimeAgo from '../time-ago';
 import ImageEmbed from './image-embed';
 import VideoEmbed from './video-embed';
 
-export interface QuoteEmbedProps {
+interface QuoteEmbedProps {
 	/** Expected to be static */
 	quote: AppBskyEmbedRecord.ViewRecord;
 	/** Expected to be static */

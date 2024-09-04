@@ -76,11 +76,6 @@ export const formatReltime = (time: number): string => {
 	}
 };
 
-export const formatAbsDate = (time: string | number) => {
-	const date = new Date(time);
-	return absWithYearFormat.format(date);
-};
-
 export const formatAbsDateTime = (time: string | number) => {
 	const date = new Date(time);
 	return absTimeFormat.format(date);

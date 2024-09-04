@@ -15,7 +15,7 @@ import ErrorView from '../../error-view';
 import SearchInput from '../../search-input';
 import VirtualItem from '../../virtual-item';
 
-export interface GifSearchDialogProps {
+interface GifSearchDialogProps {
 	onPick: (gif: GifMedia) => void;
 }
 

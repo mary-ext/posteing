@@ -2,17 +2,14 @@ import type { ParentProps } from 'solid-js';
 
 import { createProfileQuery } from '~/api/queries/profile';
 
-import { history, logger } from '~/globals/navigation';
-
 import { useAgent } from '~/lib/states/agent';
 import { useSession } from '~/lib/states/session';
 
 import Avatar, { getUserAvatarType } from './avatar';
 import IconButton from './icon-button';
-import ArrowLeftOutlinedIcon from './icons-central/arrow-left-outline';
 import MenuOutlinedIcon from './icons-central/menu-outline';
 
-export interface PageHeaderProps extends ParentProps {}
+interface PageHeaderProps extends ParentProps {}
 
 const PageHeader = (props: PageHeaderProps) => {
 	return (
@@ -26,7 +23,7 @@ const PageHeader = (props: PageHeaderProps) => {
 
 export { PageHeader as Header };
 
-export interface PageHeadingProps {
+interface PageHeadingProps {
 	title?: string;
 	subtitle?: string;
 }
@@ -47,7 +44,7 @@ const PageHeading = (props: PageHeadingProps) => {
 
 export { PageHeading as Heading };
 
-export interface PageHeaderAccessoryProps extends ParentProps {}
+interface PageHeaderAccessoryProps extends ParentProps {}
 
 const PageHeaderAccessory = (props: PageHeaderAccessoryProps) => {
 	return <div class="flex shrink-0 gap-2 empty:hidden">{props.children}</div>;
@@ -55,7 +52,7 @@ const PageHeaderAccessory = (props: PageHeaderAccessoryProps) => {
 
 export { PageHeaderAccessory as HeaderAccessory };
 
-export interface PageAccountSwitcherProps {}
+interface PageAccountSwitcherProps {}
 
 const PageAccountSwitcher = ({}: PageAccountSwitcherProps) => {
 	const { currentAccount } = useSession();
@@ -78,28 +75,3 @@ const PageAccountSwitcher = ({}: PageAccountSwitcherProps) => {
 };
 
 export { PageAccountSwitcher as AccountSwitcher };
-
-export interface PageBackProps {
-	to?: string;
-}
-
-const PageBack = (props: PageBackProps) => {
-	return (
-		<IconButton
-			title="Go back to previous page"
-			icon={ArrowLeftOutlinedIcon}
-			onClick={() => {
-				if (logger.canGoBack) {
-					history.back();
-				} else {
-					const to = props.to;
-					if (to !== undefined) {
-						history.navigate(to, { replace: true });
-					}
-				}
-			}}
-		/>
-	);
-};
-
-export { PageBack as Back };

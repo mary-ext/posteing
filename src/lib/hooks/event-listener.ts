@@ -24,7 +24,7 @@ type ListenerObject<TEvent extends Event> = {
 };
 
 // event listeners can be an object or a function
-export type Listener<TTarget extends EventTarget, TType extends string> =
+type Listener<TTarget extends EventTarget, TType extends string> =
 	| ListenerObject<InferEvent<TTarget, TType>>
 	| { (this: TTarget, ev: InferEvent<TTarget, TType>): void };
 
