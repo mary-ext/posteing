@@ -1,9 +1,12 @@
 import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 
 import metadata from './public/oauth/client-metadata.json' with { type: 'json' };
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SERVER_HOST = '127.0.0.1';
 const SERVER_PORT = 43818;
