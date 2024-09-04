@@ -9,7 +9,7 @@ interface FABProps {
 const FAB = (props: FABProps) => {
 	return (
 		<div class="flex w-full justify-end">
-			<div class="fixed bottom-13 z-2 pb-4 pr-4">
+			<div class="fixed bottom-2 z-2 pb-4 pr-4">
 				<button
 					title={props.label}
 					onClick={props.onClick}
