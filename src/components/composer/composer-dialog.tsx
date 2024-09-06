@@ -310,7 +310,7 @@ const Post = ({
 	const isFilled = () => {
 		const embed = post.embed;
 
-		return (embed && (embed.type !== EmbedKind.QUOTE || !embed.origin)) || getPostRt(post).length !== 0;
+		return (embed && (embed.type !== EmbedKind.QUOTE || !embed.origin)) || !getPostRt(post).empty;
 	};
 
 	const canRemove = createMemo(() => {
