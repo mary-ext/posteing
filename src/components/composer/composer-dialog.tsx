@@ -328,7 +328,7 @@ const Post = ({
 		const rtLength = richtext.length;
 
 		return (
-			((embed && (embed.type !== EmbedKind.QUOTE || !embed.origin)) || rtLength > 0) &&
+			((embed && (embed.type !== EmbedKind.QUOTE || !embed.origin)) || !richtext.empty) &&
 			rtLength < MAX_TEXT_LENGTH
 		);
 	});

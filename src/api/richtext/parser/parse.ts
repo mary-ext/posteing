@@ -66,6 +66,7 @@ export interface PreliminaryRichText {
 	length: number;
 	segments: PreliminarySegment[];
 	links: string[];
+	empty: boolean;
 }
 
 const enum CharCode {
@@ -103,6 +104,8 @@ const enum CharCode {
 	UPPER_Z = 90,
 }
 
+const S_RE = /^\s+$/;
+
 const WS_RE = / +(?=\n)|\n(?=(?: *\n){2} *)/g;
 const EOF_WS_RE = /\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
 
@@ -115,7 +118,7 @@ const ESCAPE_SEGMENT: EscapePreliminarySegment = { type: 'escape', raw: '\\', te
 
 const charCodeAt = String.prototype.charCodeAt;
 
-export const parseRt = (source: string): PreliminaryRichText => {
+export const parseRt = (source: string, cleanWhitespaces: boolean): PreliminaryRichText => {
 	const segments: PreliminarySegment[] = [];
 	const links: string[] = [];
 
@@ -382,7 +385,7 @@ export const parseRt = (source: string): PreliminaryRichText => {
 
 					if (start > idx) {
 						const raw = source.slice(idx, start);
-						const text = raw.replace(WS_RE, '');
+						const text = cleanWhitespaces ? raw.replace(WS_RE, '') : raw;
 
 						segments.push({ type: 'text', raw: raw, text: text });
 					}
@@ -418,7 +421,7 @@ export const parseRt = (source: string): PreliminaryRichText => {
 			}
 
 			const raw = source.slice(idx, end);
-			const text = raw.replace(end === len ? EOF_WS_RE : WS_RE, '');
+			const text = cleanWhitespaces ? raw.replace(end === len ? EOF_WS_RE : WS_RE, '') : raw;
 
 			idx = end;
 			segments.push({ type: 'text', raw: raw, text: text });
@@ -439,5 +442,6 @@ export const parseRt = (source: string): PreliminaryRichText => {
 		length: graphemeLen(text),
 		segments: segments,
 		links: links,
+		empty: text.length === 0 || (!cleanWhitespaces && S_RE.test(text)),
 	};
 };

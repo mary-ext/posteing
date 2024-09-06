@@ -165,7 +165,7 @@ export const getPostRt = (post: PostState) => {
 	const existing = unwrapped._parsed;
 
 	if (existing === null || existing.t !== text) {
-		return (unwrapped._parsed = { t: text, r: parseRt(text) }).r;
+		return (unwrapped._parsed = { t: text, r: parseRt(text, false) }).r;
 	}
 
 	return existing.r;
@@ -210,6 +210,7 @@ export function createPostState({
 
 // Composer state
 export interface CreateComposerStateOptions {
+	override?: ComposerState;
 	reply?: AppBskyFeedDefs.PostView;
 	text?: string;
 	quote?: AppBskyFeedDefs.PostView;
@@ -224,9 +225,13 @@ export interface ComposerState {
 }
 
 export function createComposerState(
-	{ reply, text, quote }: CreateComposerStateOptions = {},
+	{ override, reply, text, quote }: CreateComposerStateOptions = {},
 	{ defaultPostLanguage, defaultReplyGate }: ComposerPreferences,
 ): ComposerState {
+	if (override) {
+		return override;
+	}
+
 	return {
 		active: 0,
 		reply: reply,
