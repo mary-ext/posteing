@@ -39,7 +39,7 @@ const GifEmbed = (props: GifEmbedProps) => {
 				}}
 			</Keyed>
 
-			<div hidden={!props.active} class="absolute right-0 top-0 p-1">
+			<div hidden={!props.active} class="absolute right-0 top-0 p-1.5">
 				<IconButton
 					icon={CrossLargeOutlinedIcon}
 					title="Remove this embed"
