@@ -1,9 +1,5 @@
 import type { XRPC } from '@atcute/client';
-import type {
-	At,
-	ComAtprotoRepoGetRecord,
-	Records
-} from '@atcute/client/lexicons';
+import type { At, ComAtprotoRepoGetRecord, Records } from '@atcute/client/lexicons';
 
 type RecordType = keyof Records;
 
