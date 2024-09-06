@@ -1,8 +1,10 @@
-import { Match, Switch, onCleanup } from 'solid-js';
+import { Match, Switch } from 'solid-js';
 
 import type { AppBskyEmbedExternal } from '@atcute/client/lexicons';
 
 import { createLinkMetaQuery } from '~/api/queries/composer';
+
+import { convertBlobToUrl } from '~/lib/utils/blob';
 
 import CircularProgress from '~/components/circular-progress';
 import IconButton from '~/components/icon-button';
@@ -27,10 +29,7 @@ const ExternalEmbed = (props: ExternalEmbedProps) => {
 			<Switch>
 				<Match when={query.data} keyed>
 					{(data) => {
-						const thumbUrl = data.thumb && URL.createObjectURL(data.thumb);
-						if (thumbUrl) {
-							onCleanup(() => URL.revokeObjectURL(thumbUrl));
-						}
+						const thumbUrl = data.thumb && convertBlobToUrl(data.thumb);
 
 						const embed: AppBskyEmbedExternal.View = {
 							external: {

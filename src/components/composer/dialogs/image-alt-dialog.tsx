@@ -1,10 +1,11 @@
-import { createMemo, createSignal, onCleanup } from 'solid-js';
+import { createMemo, createSignal } from 'solid-js';
 
 import { graphemeLen } from '~/api/richtext/intl';
 import { PLAIN_WS_RE } from '~/api/richtext/parser/parse';
 
 import { useModalContext } from '~/globals/modals';
 
+import { convertBlobToUrl } from '~/lib/utils/blob';
 import { autofocusNode, modelText } from '~/lib/utils/input-refs';
 
 import Button from '../../button';
@@ -28,11 +29,7 @@ const ImageAltDialog = (props: ImageAltDialogProps) => {
 	const isEqual = () => text() === props.value;
 
 	const blobUrl = createMemo(() => {
-		const blob = props.image;
-		const url = URL.createObjectURL(blob);
-
-		onCleanup(() => URL.revokeObjectURL(url));
-		return url;
+		return convertBlobToUrl(props.image);
 	});
 
 	return (
