@@ -43,6 +43,9 @@ importers:
       '@atcute/tid':
         specifier: ^1.0.0
         version: 1.0.0
+      '@badrap/valita':
+        specifier: ^0.3.9
+        version: 0.3.9
       '@floating-ui/dom':
         specifier: ^1.6.10
         version: 1.6.10
@@ -746,6 +749,10 @@ packages:
   '@babel/types@7.25.6':
     resolution: {integrity: sha512-/l42B1qxpG6RdfYf343Uw1vmDjeNhneUXtzhojE7pDgfpEypmRhI6j1kr17XCVv4Cgl9HdAiQY2x0GwKm7rWCw==}
     engines: {node: '>=6.9.0'}
+
+  '@badrap/valita@0.3.9':
+    resolution: {integrity: sha512-keFt5iCwI6H5lbvhg2ZJCWa1xRffdpk6/LHCaayubaRM2zhnRIIBE1d+2NEzXLSk4Fe/aklGNXVPt7hNkvBH6g==}
+    engines: {node: '>= 16'}
 
   '@cloudflare/kv-asset-handler@0.3.4':
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
@@ -3692,6 +3699,8 @@ snapshots:
       '@babel/helper-string-parser': 7.24.8
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  '@badrap/valita@0.3.9': {}
 
   '@cloudflare/kv-asset-handler@0.3.4':
     dependencies:

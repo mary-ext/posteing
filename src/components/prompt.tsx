@@ -55,6 +55,8 @@ const PromptContainer = (props: PromptContainerProps) => {
 	}) as unknown as JSX.Element;
 };
 
+export { PromptContainer as Container };
+
 const getPromptDesktopWidth = ({ maxWidth = 'sm' }: PromptContainerProps) => {
 	if (maxWidth === 'sm') {
 		return `320px`;
@@ -76,6 +78,8 @@ const PromptTitle = (props: PromptTitleProps) => {
 	);
 };
 
+export { PromptTitle as Title };
+
 interface PromptDescriptionProps {
 	children: JSX.Element;
 }
@@ -83,6 +87,7 @@ interface PromptDescriptionProps {
 const PromptDescription = (props: PromptDescriptionProps) => {
 	return <p class="text-pretty text-sm text-contrast-muted empty:hidden">{props.children}</p>;
 };
+
 
 interface PromptActionsProps {
 	children: JSX.Element;
@@ -92,6 +97,8 @@ const PromptActions = (props: PromptActionsProps) => {
 	const isDesktop = useMediaQuery('(width >= 688px) and (height >= 500px)');
 	return <div class={`flex flex-col gap-3` + (!isDesktop() ? ` mt-5` : ` mt-6`)}>{props.children}</div>;
 };
+
+export { PromptActions as Actions };
 
 interface PromptActionProps {
 	variant?: 'outline' | 'primary' | 'danger';
@@ -114,6 +121,8 @@ const PromptAction = (props: PromptActionProps) => {
 		</Button>
 	);
 };
+
+export { PromptAction as Action };
 
 interface PromptConfirmProps {
 	title: JSX.Element;

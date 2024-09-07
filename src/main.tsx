@@ -10,10 +10,11 @@ import type { At } from '@atcute/client/lexicons';
 import * as navigation from './globals/navigation';
 import * as preferences from './globals/preferences';
 
-import { on } from './lib/utils/misc';
 import { configureRouter } from './lib/navigation/router';
+import { on } from './lib/utils/misc';
 
 import { AgentProvider } from './lib/states/agent';
+import { DraftsProvider } from './lib/states/drafts';
 import { SessionProvider, useSession } from './lib/states/session';
 import { ThemeProvider } from './lib/states/theme';
 
@@ -56,8 +57,10 @@ const InnerApp = () => {
 		return (
 			<AgentProvider>
 				{/* Anything under <AgentProvider> gets remounted on account changes */}
-				<Shell />
-				<ModalRenderer />
+				<DraftsProvider>
+					<Shell />
+					<ModalRenderer />
+				</DraftsProvider>
 			</AgentProvider>
 		);
 	}) as unknown as JSX.Element;

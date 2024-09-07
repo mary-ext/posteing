@@ -12,18 +12,19 @@ import {
 import { createMutable, unwrap } from 'solid-js/store';
 
 import type { AppBskyActorDefs, AppBskyFeedPost } from '@atcute/client/lexicons';
+import * as TID from '@atcute/tid';
 import { useQueryClient, type CreateQueryResult } from '@mary/solid-query';
 
 import { createProfileQuery } from '~/api/queries/profile';
 import { formatQueryError } from '~/api/utils/error';
 import { parseAtUri } from '~/api/utils/strings';
 
-import { globalEvents } from '~/globals/events';
 import { openModal, useModalContext } from '~/globals/modals';
 
 import { createEventListener } from '~/lib/hooks/event-listener';
 import { createGuard, type GuardFunction } from '~/lib/hooks/guard';
 import { useAgent } from '~/lib/states/agent';
+import { useDrafts } from '~/lib/states/drafts';
 import { useSession } from '~/lib/states/session';
 import { SUPPORTED_IMAGE_FORMATS, openImagePicker } from '~/lib/utils/blob';
 import { assert } from '~/lib/utils/invariant';
@@ -71,6 +72,7 @@ import GifSearchDialogLazy from './gifs/gif-search-dialog-lazy';
 
 import type { BaseEmbedProps } from './embeds/types';
 import { publish } from './lib/api';
+import { serializeComposer } from './lib/drafts/serialize';
 import { getEmbedFromLink } from './lib/link-detection';
 import {
 	EmbedKind,
@@ -94,7 +96,6 @@ import { GLOBAL_LABELS } from './moderation-labels';
 interface ComposerDialogProps {
 	/** This is static, meant for initializing the composer state */
 	params?: CreateComposerStateOptions;
-	onPublish?: () => void;
 }
 
 const MAX_POSTS = 25;
@@ -110,6 +111,7 @@ const ComposerDialog = (props: ComposerDialogProps) => {
 
 	const queryClient = useQueryClient();
 	const agent = useAgent();
+	const drafts = useDrafts();
 
 	const [isCloseGuarded, addCloseGuard] = createGuard('some');
 	const [canSubmit, addSubmitGuard] = createGuard('every');
@@ -118,15 +120,43 @@ const ComposerDialog = (props: ComposerDialogProps) => {
 	const [error, setError] = createSignal<string>();
 	const [message, setMessage] = createSignal<string>();
 
+	const state = createMutable(createComposerState(props.params, currentAccount!.preferences.composer));
+
 	const handleClose = () => {
 		if (isCloseGuarded()) {
+			const saveDraft = async () => {
+				close();
+
+				drafts.open().then(async (db) => {
+					if (!state.draftId) {
+						await db.add('drafts', {
+							id: TID.now(),
+							createdAt: Date.now(),
+							state: serializeComposer(state),
+						});
+					} else {
+						await db.put('drafts', {
+							id: state.draftId,
+							createdAt: Date.now(),
+							state: serializeComposer(state),
+						});
+					}
+
+					queryClient.invalidateQueries({ queryKey: ['drafts'], exact: true });
+				});
+			};
+
 			openModal(() => (
-				<Prompt.Confirm
-					title="Discard draft?"
-					description="You won't be able to retrieve what you've written"
-					danger
-					onConfirm={close}
-				/>
+				<Prompt.Container>
+					<Prompt.Title>Save draft?</Prompt.Title>
+
+					<Prompt.Actions>
+						<Prompt.Action onClick={saveDraft} variant="primary">
+							Save
+						</Prompt.Action>
+						<Prompt.Action onClick={close}>Discard</Prompt.Action>
+					</Prompt.Actions>
+				</Prompt.Container>
 			));
 
 			return;
@@ -134,8 +164,6 @@ const ComposerDialog = (props: ComposerDialogProps) => {
 
 		close();
 	};
-
-	const state = createMutable(createComposerState(props.params, currentAccount!.preferences.composer));
 
 	const showAddPostButton = () => {
 		var reply = state.reply;
@@ -200,8 +228,14 @@ const ComposerDialog = (props: ComposerDialogProps) => {
 		if (success) {
 			close();
 
-			globalEvents.emit('postpublished');
-			props.onPublish?.();
+			const draftId = state.draftId;
+
+			if (draftId) {
+				drafts.open().then(async (db) => {
+					await db.delete('drafts', draftId);
+					queryClient.invalidateQueries({ queryKey: ['drafts'], exact: true });
+				});
+			}
 		}
 	};
 

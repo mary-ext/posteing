@@ -219,6 +219,7 @@ export interface CreateComposerStateOptions {
 
 export interface ComposerState {
 	active: number;
+	draftId: string | undefined;
 	reply: AppBskyFeedDefs.PostView | undefined;
 	posts: PostState[];
 	threadgate: AppBskyFeedThreadgate.Record['allow'];
@@ -234,6 +235,7 @@ export function createComposerState(
 
 	return {
 		active: 0,
+		draftId: undefined,
 		reply: reply,
 		posts: [
 			createPostState({

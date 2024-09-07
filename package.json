@@ -15,6 +15,7 @@
 		"@atcute/cid": "^1.0.0",
 		"@atcute/client": "^2.0.0",
 		"@atcute/tid": "^1.0.0",
+		"@badrap/valita": "^0.3.9",
 		"@floating-ui/dom": "^1.6.10",
 		"@floating-ui/utils": "^0.2.7",
 		"@mary/events": "npm:@jsr/mary__events@^0.1.0",

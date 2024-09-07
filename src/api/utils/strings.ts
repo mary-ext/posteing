@@ -6,7 +6,7 @@ export const isDid = (value: string): value is At.DID => {
 	return value.startsWith('did:');
 };
 
-const ATURI_RE =
+export const ATURI_RE =
 	/^at:\/\/(did:[a-zA-Z0-9._:%-]+|[a-zA-Z0-9-.]+)\/([a-zA-Z0-9-.]+)\/([a-zA-Z0-9._~:@!$&%')(*+,;=-]+)(?:#(\/[a-zA-Z0-9._~:@!$&%')(*+,;=\-[\]/\\]*))?$/;
 
 interface AtUri {
