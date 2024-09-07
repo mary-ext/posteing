@@ -30,6 +30,10 @@ const SignedOutPage = () => {
 					>
 						source code
 					</a>
+					{' · '}
+					<a target="_blank" href="/privacy.html" class="text-accent hover:underline">
+						privacy policy
+					</a>
 				</p>
 			</div>
 			<div class="flex shrink-0 flex-col gap-4 p-6">
