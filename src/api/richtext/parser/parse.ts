@@ -106,9 +106,6 @@ const enum CharCode {
 
 const S_RE = /^\s+$/;
 
-const WS_RE = / +(?=\n)|\n(?=(?: *\n){2} *)/g;
-const EOF_WS_RE = /\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
-
 export const PLAIN_WS_RE = /^\s+|\s+$| +(?=\n)|\n(?=(?: *\n){2}) */g;
 
 const MENTION_RE = /[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*(?:\.[a-zA-Z]{2,})(@)?/y;
@@ -126,6 +123,10 @@ export const parseRt = (source: string, cleanWhitespaces: boolean): PreliminaryR
 
 	let tmp: number;
 	let secure: boolean = false;
+
+	if (cleanWhitespaces) {
+		source = source.replace(PLAIN_WS_RE, '');
+	}
 
 	for (let idx = 0, len = source.length; idx < len; ) {
 		const look = c(idx);
@@ -385,9 +386,8 @@ export const parseRt = (source: string, cleanWhitespaces: boolean): PreliminaryR
 
 					if (start > idx) {
 						const raw = source.slice(idx, start);
-						const text = cleanWhitespaces ? raw.replace(WS_RE, '') : raw;
 
-						segments.push({ type: 'text', raw: raw, text: text });
+						segments.push({ type: 'text', raw: raw, text: raw });
 					}
 
 					{
@@ -421,10 +421,9 @@ export const parseRt = (source: string, cleanWhitespaces: boolean): PreliminaryR
 			}
 
 			const raw = source.slice(idx, end);
-			const text = cleanWhitespaces ? raw.replace(end === len ? EOF_WS_RE : WS_RE, '') : raw;
 
 			idx = end;
-			segments.push({ type: 'text', raw: raw, text: text });
+			segments.push({ type: 'text', raw: raw, text: raw });
 
 			continue;
 		}
