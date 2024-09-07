@@ -11,7 +11,7 @@ import {
 	type PostRecordEmbed,
 	type PostState,
 } from '../state';
-import type { DraftItem } from '~/lib/aglais-drafts';
+import type { DraftEntry } from '~/lib/aglais-drafts';
 
 const deserializeEmbed = (embed: t.SerializedEmbed): PostEmbed => {
 	switch (embed.type) {
@@ -73,12 +73,12 @@ const deserializePost = (post: t.SerializedPost): PostState => {
 	};
 };
 
-export const deserializeComposer = (item: DraftItem): ComposerState => {
-	const state = item.state;
+export const deserializeComposer = (entry: DraftEntry): ComposerState => {
+	const state = entry.state;
 
 	return {
 		active: 0,
-		draftId: item.id,
+		draftId: entry.id,
 		reply: undefined,
 		posts: state.posts.map(deserializePost),
 		threadgate: state.threadgate?.map((allow): UnwrapArray<AppBskyFeedThreadgate.Record['allow']> => {
