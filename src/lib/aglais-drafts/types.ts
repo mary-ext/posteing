@@ -49,6 +49,8 @@ const imageEmbed = v.object({
 	labels: labels,
 });
 
+export type SerializedImageEmbed = v.Infer<typeof imageEmbed>;
+
 const mediaEmbed = v.union(externalEmbed, gifEmbed, imageEmbed);
 
 export type SerializedMediaEmbed = v.Infer<typeof mediaEmbed>;
