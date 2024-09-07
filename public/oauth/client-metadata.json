@@ -3,6 +3,7 @@
 	"client_uri": "https://posteing.pages.dev",
 	"client_name": "posteing",
 	"application_type": "web",
+	"policy_uri": "https://posteing.pages.dev/privacy",
 	"scope": "atproto transition:generic",
 	"grant_types": ["authorization_code", "refresh_token"],
 	"redirect_uris": ["https://posteing.pages.dev/oauth/callback"],
