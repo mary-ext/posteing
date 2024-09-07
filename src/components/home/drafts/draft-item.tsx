@@ -67,7 +67,7 @@ const DraftItem = ({ entry }: DraftItemProps) => {
 			</div>
 
 			<div class="mt-1 flex gap-4">
-				<div class="min-w-0 grow-4">
+				<div class="min-w-0 grow">
 					<p class="line-clamp-[4] whitespace-pre-wrap break-words text-sm">
 						{
 							/* @once */ posts.map((post) => post.text).join('\n\n') || (
@@ -78,7 +78,7 @@ const DraftItem = ({ entry }: DraftItemProps) => {
 				</div>
 
 				{imageEmbed ? (
-					<div class="grow basis-0">
+					<div class="max-w-16 shrink-0 grow">
 						<ImageEmbed
 							embed={{
 								images: imageEmbed.images.map((img) => {
