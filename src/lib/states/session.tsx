@@ -1,4 +1,5 @@
 import {
+	type ParentProps,
 	batch,
 	createContext,
 	createEffect,
@@ -6,7 +7,6 @@ import {
 	createSignal,
 	untrack,
 	useContext,
-	type ParentProps,
 } from 'solid-js';
 
 import { XRPC } from '@atcute/client';
@@ -19,12 +19,10 @@ import { getSession } from '../bsky-oauth/agents/session';
 import { OAuthUserAgent } from '../bsky-oauth/agents/user-agent';
 import { database } from '../bsky-oauth/globals';
 import { getMetadataFromAuthorizationServer } from '../bsky-oauth/resolver';
-
-import type { PerAccountPreferenceSchema } from '../preferences/account';
-import type { AccountData } from '../preferences/sessions';
-
 import { makeAbortable } from '../hooks/abortable';
 import { createReactiveLocalStorage, isExternalWriting } from '../hooks/local-storage';
+import type { PerAccountPreferenceSchema } from '../preferences/account';
+import type { AccountData } from '../preferences/sessions';
 import { assert } from '../utils/invariant';
 
 interface CurrentAccountState {

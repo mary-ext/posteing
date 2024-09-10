@@ -1,9 +1,7 @@
 // Our runtime state isn't stable, in particular, embed types are represented
 // with bitflags. We don't want to cram those into IndexedDB.
-
 // The validations aren't going to be used as long as the versioning stays the
 // same, they're here just in case.
-
 import * as v from '@badrap/valita';
 
 import { ATURI_RE } from '~/api/utils/strings';

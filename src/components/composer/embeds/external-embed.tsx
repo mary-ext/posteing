@@ -7,12 +7,12 @@ import { createLinkMetaQuery } from '~/api/queries/composer';
 import { convertBlobToUrl } from '~/lib/utils/blob';
 
 import CircularProgress from '~/components/circular-progress';
+import ExternalEmbedContent from '~/components/embeds/external-embed';
 import IconButton from '~/components/icon-button';
 import CrossLargeOutlinedIcon from '~/components/icons-central/cross-large-outline';
 
-import ExternalEmbedContent from '~/components/embeds/external-embed';
-
 import type { PostExternalEmbed } from '../lib/state';
+
 import type { BaseEmbedProps } from './types';
 
 interface ExternalEmbedProps extends BaseEmbedProps {

@@ -4,13 +4,12 @@ import { openModal } from '~/globals/modals';
 
 import { convertBlobToUrl } from '~/lib/utils/blob';
 
+import AltButton from '../../alt-button';
 import IconButton from '../../icon-button';
 import CrossLargeOutlinedIcon from '../../icons-central/cross-large-outline';
-
-import AltButton from '../../alt-button';
 import ImageAltDialogLazy from '../dialogs/image-alt-dialog-lazy';
-
 import type { PostImageEmbed } from '../lib/state';
+
 import type { BaseEmbedProps } from './types';
 
 interface ImageEmbedProps extends BaseEmbedProps {

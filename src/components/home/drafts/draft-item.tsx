@@ -2,14 +2,12 @@ import { openModal } from '~/globals/modals';
 
 import type { DraftEntry } from '~/lib/aglais-drafts';
 import type { SerializedEmbed, SerializedImageEmbed, SerializedPost } from '~/lib/aglais-drafts/types';
-
 import { formatAbsDateTime } from '~/lib/intl/time';
 import { convertBlobToUrl } from '~/lib/utils/blob';
 import { isElementClicked } from '~/lib/utils/interaction';
 
-import { deserializeComposer } from '~/components/composer/lib/drafts/deserialize';
-
 import ComposerDialogLazy from '~/components/composer/composer-dialog-lazy';
+import { deserializeComposer } from '~/components/composer/lib/drafts/deserialize';
 import ImageEmbed from '~/components/embeds/image-embed';
 import MoreHorizOutlinedIcon from '~/components/icons-central/more-horiz-outline';
 

@@ -1,4 +1,4 @@
-import { createSignal, onCleanup, runWithOwner, type JSX } from 'solid-js';
+import { type JSX, createSignal, onCleanup, runWithOwner } from 'solid-js';
 
 import { UNSAFE_routerEvents, UNSAFE_useViewContext } from '~/lib/navigation/router';
 import { requestIdle } from '~/lib/utils/misc';

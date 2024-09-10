@@ -2,13 +2,14 @@ import type { ParentProps } from 'solid-js';
 
 import { createProfileQuery } from '~/api/queries/profile';
 
+import { openModal } from '~/globals/modals';
+
 import { useAgent } from '~/lib/states/agent';
 import { useSession } from '~/lib/states/session';
 
 import Avatar, { getUserAvatarType } from './avatar';
 import IconButton from './icon-button';
 import MenuOutlinedIcon from './icons-central/menu-outline';
-import { openModal } from '~/globals/modals';
 import AccountSwitchMenu from './main/account-switch-menu';
 
 interface PageHeaderProps extends ParentProps {}

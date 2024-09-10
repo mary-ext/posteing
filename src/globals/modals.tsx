@@ -1,4 +1,4 @@
-import { createContext, createSignal, useContext, type JSX } from 'solid-js';
+import { type JSX, createContext, createSignal, useContext } from 'solid-js';
 
 import { assert } from '~/lib/utils/invariant';
 

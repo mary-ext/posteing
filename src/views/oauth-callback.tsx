@@ -1,12 +1,12 @@
-import { batch, createResource, Match, Switch } from 'solid-js';
+import { Match, Switch, batch, createResource } from 'solid-js';
+
+import * as preferences from '~/globals/preferences';
 
 import { OAuthServerAgent } from '~/lib/bsky-oauth/agents/server-agent';
 import { sessions } from '~/lib/bsky-oauth/agents/session';
 import { OAuthUserAgent } from '~/lib/bsky-oauth/agents/user-agent';
 import { database } from '~/lib/bsky-oauth/globals';
 import { getMetadataFromAuthorizationServer } from '~/lib/bsky-oauth/resolver';
-
-import * as preferences from '~/globals/preferences';
 
 import Button from '~/components/button';
 import CircularProgress from '~/components/circular-progress';

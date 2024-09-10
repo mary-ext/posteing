@@ -1,9 +1,9 @@
 import { useQueryClient } from '@mary/solid-query';
 
+import { openModal, useModalContext } from '~/globals/modals';
+
 import type { DraftEntry } from '~/lib/aglais-drafts';
 import { useDrafts } from '~/lib/states/drafts';
-
-import { openModal, useModalContext } from '~/globals/modals';
 
 import TrashOutlinedIcon from '~/components/icons-central/trash-outline';
 import * as Menu from '~/components/menu';

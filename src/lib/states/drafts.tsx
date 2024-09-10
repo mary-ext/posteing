@@ -1,12 +1,10 @@
-import { createContext, onCleanup, useContext, type ParentProps } from 'solid-js';
+import { type IDBPDatabase, openDB } from 'idb';
+import { type ParentProps, createContext, onCleanup, useContext } from 'solid-js';
 
-import { openDB, type IDBPDatabase } from 'idb';
-
+import type { DraftsDBSchema } from '../aglais-drafts';
 import { assert } from '../utils/invariant';
 
 import { useSession } from './session';
-
-import type { DraftsDBSchema } from '../aglais-drafts';
 
 interface DraftsContext {
 	open(): Promise<IDBPDatabase<DraftsDBSchema>>;

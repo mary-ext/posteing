@@ -1,10 +1,8 @@
 import { ErrorBoundary, Suspense, lazy } from 'solid-js';
 
 import { hasModals } from './globals/modals';
-
 import { RouterView } from './lib/navigation/router';
 import { useSession } from './lib/states/session';
-
 import ErrorPage from './views/_error';
 
 const SignedOutView = lazy(() => import('./views/_signed-out'));

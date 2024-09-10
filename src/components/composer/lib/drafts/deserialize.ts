@@ -1,17 +1,17 @@
 import type { AppBskyFeedThreadgate } from '@atcute/client/lexicons';
 
+import type { DraftEntry } from '~/lib/aglais-drafts';
 import * as t from '~/lib/aglais-drafts/types';
 import { assert } from '~/lib/utils/invariant';
 
 import {
-	EmbedKind,
 	type ComposerState,
+	EmbedKind,
 	type PostEmbed,
 	type PostMediaEmbed,
 	type PostRecordEmbed,
 	type PostState,
 } from '../state';
-import type { DraftEntry } from '~/lib/aglais-drafts';
 
 const deserializeEmbed = (embed: t.SerializedEmbed): PostEmbed => {
 	switch (embed.type) {

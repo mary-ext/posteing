@@ -1,5 +1,5 @@
 import type { At, ComAtprotoIdentityResolveHandle } from '@atcute/client/lexicons';
-import { getPdsEndpoint, type DidDocument } from '@atcute/client/utils/did';
+import { type DidDocument, getPdsEndpoint } from '@atcute/client/utils/did';
 
 import { isDid } from '~/api/utils/strings';
 

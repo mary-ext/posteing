@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 
-import metadata from './public/oauth/client-metadata.json' with { type: 'json' };
+import metadata from './public/oauth/client-metadata.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

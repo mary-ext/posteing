@@ -1,4 +1,5 @@
 import { lazy } from 'solid-js';
+
 import type { RouteDefinition } from './lib/navigation/router';
 
 const routes: RouteDefinition[] = [

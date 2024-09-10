@@ -7,10 +7,12 @@ import type {
 	AppBskyFeedDefs,
 	AppBskyFeedPost,
 } from '@atcute/client/lexicons';
+
 import { parseAtUri } from '~/api/utils/strings';
 
 import Avatar, { getUserAvatarType } from '../avatar';
 import TimeAgo from '../time-ago';
+
 import ImageEmbed from './image-embed';
 import VideoEmbed from './video-embed';
 

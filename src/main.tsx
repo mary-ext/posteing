@@ -1,26 +1,22 @@
 /* @refresh reload */
-
-import './styles/app.css';
-
-import { createSignal, onMount, type JSX } from 'solid-js';
+import { type JSX, createSignal, onMount } from 'solid-js';
 import { render } from 'solid-js/web';
 
 import type { At } from '@atcute/client/lexicons';
 
+import ModalRenderer from './components/main/modal-renderer';
 import * as navigation from './globals/navigation';
 import * as preferences from './globals/preferences';
-
 import { configureRouter } from './lib/navigation/router';
-import { on } from './lib/utils/misc';
-
 import { AgentProvider } from './lib/states/agent';
 import { DraftsProvider } from './lib/states/drafts';
 import { SessionProvider, useSession } from './lib/states/session';
 import { ThemeProvider } from './lib/states/theme';
-
-import ModalRenderer from './components/main/modal-renderer';
+import { on } from './lib/utils/misc';
 import routes from './routes';
 import Shell from './shell';
+
+import './styles/app.css';
 
 // Configure routing
 configureRouter({

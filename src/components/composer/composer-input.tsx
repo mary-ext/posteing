@@ -1,6 +1,8 @@
+import { autoPlacement, autoUpdate, offset, shift, size } from '@floating-ui/dom';
 import { useFloating } from 'solid-floating-ui';
 import {
 	For,
+	type JSX,
 	Match,
 	Switch,
 	createEffect,
@@ -8,12 +10,9 @@ import {
 	createRenderEffect,
 	createResource,
 	createSignal,
-	type JSX,
 } from 'solid-js';
 
 import type { AppBskyActorDefs } from '@atcute/client/lexicons';
-
-import { autoPlacement, autoUpdate, offset, shift, size } from '@floating-ui/dom';
 
 import { type PreliminaryRichText } from '~/api/richtext/parser/parse';
 import { safeUrlParse } from '~/api/utils/strings';

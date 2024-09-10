@@ -88,7 +88,6 @@ const PromptDescription = (props: PromptDescriptionProps) => {
 	return <p class="text-pretty text-sm text-contrast-muted empty:hidden">{props.children}</p>;
 };
 
-
 interface PromptActionsProps {
 	children: JSX.Element;
 }

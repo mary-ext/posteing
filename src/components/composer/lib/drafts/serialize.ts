@@ -3,7 +3,7 @@ import { unwrap } from 'solid-js/store';
 import type * as t from '~/lib/aglais-drafts/types';
 import { assert } from '~/lib/utils/invariant';
 
-import { EmbedKind, type ComposerState, type PostEmbed, type PostState } from '../state';
+import { type ComposerState, EmbedKind, type PostEmbed, type PostState } from '../state';
 
 const serializeEmbed = (embed: PostEmbed): t.SerializedEmbed => {
 	switch (embed.type) {

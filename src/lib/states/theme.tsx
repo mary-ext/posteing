@@ -1,4 +1,4 @@
-import { createContext, createRenderEffect, createSignal, type ParentProps } from 'solid-js';
+import { type ParentProps, createContext, createRenderEffect, createSignal } from 'solid-js';
 
 import * as preferences from '~/globals/preferences';
 

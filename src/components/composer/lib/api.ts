@@ -21,7 +21,7 @@ import type { QueryClient } from '@mary/solid-query';
 import { uploadBlob } from '~/api/queries/blob';
 import type { LinkMeta } from '~/api/queries/composer';
 import { getUtf8Length } from '~/api/richtext/intl';
-import { parseRt, type PreliminaryRichText } from '~/api/richtext/parser/parse';
+import { type PreliminaryRichText, parseRt } from '~/api/richtext/parser/parse';
 import { getRecord } from '~/api/utils/records';
 
 import { compressPostImage } from '~/lib/bsky/image';
@@ -30,12 +30,12 @@ import { assert } from '~/lib/utils/invariant';
 
 import { serializeRecordCid } from './cid';
 import {
-	EmbedKind,
-	getEmbedLabels,
 	type ComposerState,
+	EmbedKind,
 	type PostEmbed,
 	type PostMediaEmbed,
 	type PostRecordEmbed,
+	getEmbedLabels,
 } from './state';
 
 interface PublishOptions {

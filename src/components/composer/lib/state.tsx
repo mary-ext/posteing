@@ -2,7 +2,7 @@ import { unwrap } from 'solid-js/store';
 
 import type { AppBskyFeedDefs, AppBskyFeedThreadgate } from '@atcute/client/lexicons';
 
-import { parseRt, type PreliminaryRichText } from '~/api/richtext/parser/parse';
+import { type PreliminaryRichText, parseRt } from '~/api/richtext/parser/parse';
 
 import { primarySystemLanguage } from '~/globals/locales';
 
