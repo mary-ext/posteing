@@ -141,7 +141,7 @@ export const SessionProvider = (props: ParentProps) => {
 		async logout(): Promise<void> {
 			const $state = untrack(state);
 			if ($state !== undefined) {
-				return this.removeAccount($state.did);
+				return context.removeAccount($state.did);
 			}
 		},
 	};
